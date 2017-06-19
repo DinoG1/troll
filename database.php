@@ -1,6 +1,6 @@
 <?php
-    $user = 'troll';
-    $pass = 'troll';
+    $user = 'root';
+    $pass = '';
     $server = 'localhost';
     $db_name = 'troll';
 	$db_salt = 'sdhg7432t55$&$%&';
