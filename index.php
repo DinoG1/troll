@@ -8,7 +8,11 @@ include_once 'database.php';
         <li class="active"><a href="#tab1">New</a></li>
         <li><a href="#tab2">Top</a></li>
         <li><a href="#tab3">Worst</a></li>
-        <li><a href="#tab4">My jure</a></li>
+        <li><a href="#tab4">My</a></li>
+        <li><a href="#tab5">This Week</a></li>
+        <li><a href="#tab6">This Month</a></li>
+        <li><a href="#tab4">This Year</a></li>
+        <li><a href="#tab4">This Yeaasdasdr</a></li>
     </ul>
 
     <div class="tab-content">
