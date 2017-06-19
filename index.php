@@ -12,7 +12,6 @@ include_once 'database.php';
         <li><a href="#tab5">This Week</a></li>
         <li><a href="#tab6">This Month</a></li>
         <li><a href="#tab4">This Year</a></li>
-        <li><a href="#tab4">This Yeaasdasdr</a></li>
     </ul>
 
     <div class="tab-content">
