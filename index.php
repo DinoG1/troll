@@ -18,13 +18,18 @@ include_once 'database.php';
         
         <div id="tab1" class="tab active">
             <?php
-            $query = "SELECT p.*, u.username 
-              FROM posts p INNER JOIN users u ON p.user_id=u.id 
-              ORDER BY p.date_add DESC";
+            $query = "SELECT p.*, u.* FROM posts p INNER JOIN users u ON p.user_id=u.id ORDER BY p.date_add DESC";
             $result = mysqli_query($link, $query);
             while ($row = mysqli_fetch_array($result)) {
                 ?>
                 <div class="trollPicture">
+                    <?php 
+                       $email= $row['email'];
+                       $email = trim($email);           //trima space
+                       $email = strtolower($email);     //vse v male lowercase
+                       $email_hash = md5($email);       //hasha email
+                    ?>
+                    <span class="trollUser"><img src="http://www.gravatar.com/avatar/<?php echo $email_hash?>?s=20" /></span>
                     <span class="trollUser"><?php echo $row['username']; ?></span>
                     <span class="trollDate"><?php echo $row['date_add']; ?></span>
                     <br />
@@ -43,13 +48,18 @@ include_once 'database.php';
 
         <div id="tab2" class="tab">
             <?php
-            $query = "SELECT p.*, u.username 
-              FROM posts p INNER JOIN users u ON p.user_id=u.id 
-              ORDER BY p.upvote DESC";
+            $query = "SELECT p.*, u.* FROM posts p INNER JOIN users u ON p.user_id=u.id ORDER BY p.upvote DESC";
             $result = mysqli_query($link, $query);
             while ($row = mysqli_fetch_array($result)) {
                 ?>
                 <div class="trollPicture">
+                    <?php 
+                       $email= $row['email'];
+                       $email = trim($email);           //trima space
+                       $email = strtolower($email);     //vse v male lowercase
+                       $email_hash = md5($email);       //hasha email
+                    ?>
+                    <span class="trollUser"><img src="http://www.gravatar.com/avatar/<?php echo $email_hash?>?s=20" /></span>
                     <span class="trollUser"><?php echo $row['username']; ?></span>
                     <span class="trollDate"><?php echo $row['date_add']; ?></span>
                     <br />
@@ -68,13 +78,18 @@ include_once 'database.php';
 
         <div id="tab3" class="tab">
             <?php
-            $query = "SELECT p.*, u.username 
-              FROM posts p INNER JOIN users u ON p.user_id=u.id 
-              ORDER BY p.downvote DESC";
+            $query = "SELECT p.*, u.* FROM posts p INNER JOIN users u ON p.user_id=u.id ORDER BY p.downvote DESC";
             $result = mysqli_query($link, $query);
             while ($row = mysqli_fetch_array($result)) {
                 ?>
                 <div class="trollPicture">
+                    <?php 
+                       $email= $row['email'];
+                       $email = trim($email);           //trima space
+                       $email = strtolower($email);     //vse v male lowercase
+                       $email_hash = md5($email);       //hasha email
+                    ?>
+                    <span class="trollUser"><img src="http://www.gravatar.com/avatar/<?php echo $email_hash?>?s=20" /></span>
                     <span class="trollUser"><?php echo $row['username']; ?></span>
                     <span class="trollDate"><?php echo $row['date_add']; ?></span>
                     <br />
@@ -93,14 +108,18 @@ include_once 'database.php';
 
         <div id="tab4" class="tab">
             <?php
-            $query = "SELECT p.*, u.username 
-              FROM posts p INNER JOIN users u ON p.user_id=u.id
-              WHERE p.user_id = ".$_SESSION['user_id']."
-              ORDER BY p.date_add DESC";
+            $query = "SELECT p.*, u.*  FROM posts p INNER JOIN users u ON p.user_id=u.id WHERE p.user_id = ".$_SESSION['user_id']." ORDER BY p.date_add DESC;";  
             $result = mysqli_query($link, $query);
             while ($row = mysqli_fetch_array($result)) {
                 ?>
                 <div class="trollPicture">
+                    <?php 
+                       $email= $row['email'];
+                       $email = trim($email);           //trima space
+                       $email = strtolower($email);     //vse v male lowercase
+                       $email_hash = md5($email);       //hasha email
+                    ?>
+                    <span class="trollUser"><img src="http://www.gravatar.com/avatar/<?php echo $email_hash?>?s=20" /></span>
                     <span class="trollUser"><?php echo $row['username']; ?></span>
                     <span class="trollDate"><?php echo $row['date_add']; ?></span>
                     <br />
@@ -119,11 +138,18 @@ include_once 'database.php';
         
         <div id="tab5" class="tab">
             <?php
-            $query = "SELECT p.*, u.username FROM posts p INNER JOIN users u ON p.user_id=u.id WHERE WEEKOFYEAR(date_add) = WEEKOFYEAR(NOW()) AND year(date_add) = year(CURRENT_DATE) ORDER BY p.upvote DESC;";
+            $query = "SELECT p.*, u.* FROM posts p INNER JOIN users u ON p.user_id=u.id WHERE WEEKOFYEAR(date_add) = WEEKOFYEAR(NOW()) AND year(date_add) = year(CURRENT_DATE) ORDER BY p.upvote DESC;";
             $result = mysqli_query($link, $query);
             while ($row = mysqli_fetch_array($result)) {
                 ?>
                 <div class="trollPicture">
+                     <?php 
+                       $email= $row['email'];
+                       $email = trim($email);           //trima space
+                       $email = strtolower($email);     //vse v male lowercase
+                       $email_hash = md5($email);       //hasha email
+                    ?>
+                    <span class="trollUser"><img src="http://www.gravatar.com/avatar/<?php echo $email_hash?>?s=20" /></span>
                     <span class="trollUser"><?php echo $row['username']; ?></span>
                     <span class="trollDate"><?php echo $row['date_add']; ?></span>
                     <br />
@@ -142,11 +168,18 @@ include_once 'database.php';
         
         <div id="tab6" class="tab"> 
             <?php
-            $query = "SELECT p.*, u.username FROM posts p INNER JOIN users u ON p.user_id=u.id WHERE month(date_add) = month(CURRENT_DATE) AND year(date_add) = year(CURRENT_DATE) ORDER BY p.upvote DESC;";
+            $query = "SELECT p.*, u.* FROM posts p INNER JOIN users u ON p.user_id=u.id WHERE month(date_add) = month(CURRENT_DATE) AND year(date_add) = year(CURRENT_DATE) ORDER BY p.upvote DESC;";
             $result = mysqli_query($link, $query);
             while ($row = mysqli_fetch_array($result)) {
                 ?>
                 <div class="trollPicture">
+                     <?php 
+                       $email= $row['email'];
+                       $email = trim($email);           //trima space
+                       $email = strtolower($email);     //vse v male lowercase
+                       $email_hash = md5($email);       //hasha email
+                    ?>
+                    <span class="trollUser"><img src="http://www.gravatar.com/avatar/<?php echo $email_hash?>?s=20" /></span>
                     <span class="trollUser"><?php echo $row['username']; ?></span>
                     <span class="trollDate"><?php echo $row['date_add']; ?></span>
                     <br />
@@ -165,11 +198,18 @@ include_once 'database.php';
         
         <div id="tab7" class="tab"> 
             <?php
-            $query = "SELECT p.*, u.username FROM posts p INNER JOIN users u ON p.user_id=u.id WHERE year(date_add) = year(CURRENT_DATE) ORDER BY p.upvote DESC;";
+            $query = "SELECT p.*, u.* FROM posts p INNER JOIN users u ON p.user_id=u.id WHERE year(date_add) = year(CURRENT_DATE) ORDER BY p.upvote DESC;";
             $result = mysqli_query($link, $query);
             while ($row = mysqli_fetch_array($result)) {
                 ?>
                 <div class="trollPicture">
+                     <?php 
+                       $email= $row['email'];
+                       $email = trim($email);           //trima space
+                       $email = strtolower($email);     //vse v male lowercase
+                       $email_hash = md5($email);       //hasha email
+                    ?>
+                    <span class="trollUser"><img src="http://www.gravatar.com/avatar/<?php echo $email_hash?>?s=20" /></span>
                     <span class="trollUser"><?php echo $row['username']; ?></span>
                     <span class="trollDate"><?php echo $row['date_add']; ?></span>
                     <br />
