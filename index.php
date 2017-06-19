@@ -11,10 +11,11 @@ include_once 'database.php';
         <li><a href="#tab4">My</a></li>
         <li><a href="#tab5">This Week</a></li>
         <li><a href="#tab6">This Month</a></li>
-        <li><a href="#tab4">This Year</a></li>
+        <li><a href="#tab7">This Year</a></li>
     </ul>
 
     <div class="tab-content">
+        
         <div id="tab1" class="tab active">
             <?php
             $query = "SELECT p.*, u.username 
@@ -115,10 +116,78 @@ include_once 'database.php';
             }
             ?>
         </div>
+        
+        <div id="tab5" class="tab">
+            <?php
+            $query = "SELECT p.*, u.username FROM posts p INNER JOIN users u ON p.user_id=u.id WHERE WEEKOFYEAR(date_add) = WEEKOFYEAR(NOW()) AND year(date_add) = year(CURRENT_DATE) ORDER BY p.upvote DESC;";
+            $result = mysqli_query($link, $query);
+            while ($row = mysqli_fetch_array($result)) {
+                ?>
+                <div class="trollPicture">
+                    <span class="trollUser"><?php echo $row['username']; ?></span>
+                    <span class="trollDate"><?php echo $row['date_add']; ?></span>
+                    <br />
+                    <a href="post.php?id=<?php echo $row['id']; ?>">
+                        <img src="<?php echo $row['url']; ?>" alt="<?php echo $row['title']; ?>" width="200"/>
+                    </a>
+                    <br />
+                    <a href="post_vote.php?post_id=<?php echo $row['id']; ?>&vote=1">Upvote (<?php echo $row['upvote']; ?>)</a>
+                    <a href="post_vote.php?post_id=<?php echo $row['id']; ?>&vote=0">Downvote (<?php echo $row['downvote']; ?>)</a>
+                    <hr />
+                </div>
+                <?php
+            }
+            ?>
+        </div>
+        
+        <div id="tab6" class="tab"> 
+            <?php
+            $query = "SELECT p.*, u.username FROM posts p INNER JOIN users u ON p.user_id=u.id WHERE month(date_add) = month(CURRENT_DATE) AND year(date_add) = year(CURRENT_DATE) ORDER BY p.upvote DESC;";
+            $result = mysqli_query($link, $query);
+            while ($row = mysqli_fetch_array($result)) {
+                ?>
+                <div class="trollPicture">
+                    <span class="trollUser"><?php echo $row['username']; ?></span>
+                    <span class="trollDate"><?php echo $row['date_add']; ?></span>
+                    <br />
+                    <a href="post.php?id=<?php echo $row['id']; ?>">
+                        <img src="<?php echo $row['url']; ?>" alt="<?php echo $row['title']; ?>" width="200"/>
+                    </a>
+                    <br />
+                    <a href="post_vote.php?post_id=<?php echo $row['id']; ?>&vote=1">Upvote (<?php echo $row['upvote']; ?>)</a>
+                    <a href="post_vote.php?post_id=<?php echo $row['id']; ?>&vote=0">Downvote (<?php echo $row['downvote']; ?>)</a>
+                    <hr />
+                </div>
+                <?php
+            }
+            ?>
+        </div>
+        
+        <div id="tab7" class="tab"> 
+            <?php
+            $query = "SELECT p.*, u.username FROM posts p INNER JOIN users u ON p.user_id=u.id WHERE year(date_add) = year(CURRENT_DATE) ORDER BY p.upvote DESC;";
+            $result = mysqli_query($link, $query);
+            while ($row = mysqli_fetch_array($result)) {
+                ?>
+                <div class="trollPicture">
+                    <span class="trollUser"><?php echo $row['username']; ?></span>
+                    <span class="trollDate"><?php echo $row['date_add']; ?></span>
+                    <br />
+                    <a href="post.php?id=<?php echo $row['id']; ?>">
+                        <img src="<?php echo $row['url']; ?>" alt="<?php echo $row['title']; ?>" width="200"/>
+                    </a>
+                    <br />
+                    <a href="post_vote.php?post_id=<?php echo $row['id']; ?>&vote=1">Upvote (<?php echo $row['upvote']; ?>)</a>
+                    <a href="post_vote.php?post_id=<?php echo $row['id']; ?>&vote=0">Downvote (<?php echo $row['downvote']; ?>)</a>
+                    <hr />
+                </div>
+                <?php
+            }
+            ?>
+        </div>
+        
     </div>
 </div>
-
-
 
 <?php
 include_once 'footer.php';
