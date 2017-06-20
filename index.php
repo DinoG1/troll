@@ -5,7 +5,8 @@ include_once 'database.php';
 ?>
 <div class="tabs">
     <ul class="tab-links">
-        <li class="active"><a href="#tab1">New</a></li>
+        <li class="active">
+        <a href="#tab1">New</a></li>
         <li><a href="#tab2">Top</a></li>
         <li><a href="#tab3">Worst</a></li>
         <li><a href="#tab4">My</a></li>
@@ -20,7 +21,6 @@ include_once 'database.php';
     </ul>
 
     <div class="tab-content">
-        
         
         <!--1 NEW-->
         <div id="tab1" class="tab active">
@@ -262,7 +262,7 @@ include_once 'database.php';
             ?>
         </div>
         
-        <!---------------------------->
+        <!------------->
         
         <!--5 B - Week-->
         <div id="tab5" class="tab active">
@@ -445,7 +445,7 @@ include_once 'database.php';
             ?>
         </div>
         
-        <!---------------------------->
+        <!------------->
         
          <!--8 W - Week-->
         <div id="tab8" class="tab active">

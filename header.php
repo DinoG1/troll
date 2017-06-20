@@ -90,6 +90,8 @@ include_once 'session.php';
                                     <h2>Magna Phasellus</h2>
                                 </header>
                                 <ul class="link-list">
+                                    <li><a href="sendmessage.php">Send Message</a></li>
+                                    <li><a href="readmessage.php">Read Message</a></li>
                                     <li><a href="#">Sed dolore viverra</a></li>
                                     <li><a href="#">Ligula non varius</a></li>
                                     <li><a href="#">Nec sociis natoque</a></li>
