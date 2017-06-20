@@ -1,7 +1,7 @@
 <?php
 include_once 'header.php';
 $mysqli = NEW mysqli('localhost', 'root', '', 'troll1');
-//phpinfo();
+
 
 $output = NULL;
 
