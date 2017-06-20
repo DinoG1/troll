@@ -11,7 +11,7 @@
     }
     
     $post_id = (int) $_GET['post_id'];
-   // $vote = (int) $_GET['vote'];
+    $vote = (int) $_GET['vote'];
     
     $up = 1;
     $down = 0;    
