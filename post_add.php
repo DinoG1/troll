@@ -11,7 +11,16 @@
     <input type="text" name="tags" id="tags"  /><br />
     <input type="submit" name="submit" value="Naloži" />
 </form>
-
+<br />
+<h1>Dodaj video</h1>
+<form action="video_insert.php" method="post" enctype="multipart/form-data">
+    <label for="title2">Naslov</label>
+    <input type="text" name="title2" id="title2" required="required"/><br />
+    <label for="url">Prilepi URL</label>
+    <input type="text" name="video" id="video" required="required"/><br />
+    <input type="submit" name="submit" value="Naloži" />
+    
+</form>
 <?php
     include_once 'footer.php';
 ?>

@@ -15,6 +15,7 @@
     <h2><?php echo $post['title'];?></h2>
     <h4>Dodal: <?php echo $post['username'];?> (<?php echo $post['date_add'];?>)</h4>
     <hr />
+    
     <img src="<?php echo $post['url'];?>" width="200" alt="<?php echo $post['title'];?>" /><br />
     <a href="post_edit.php?post_id=<?php echo $post_id;?>">Edit</a>
     <a href="post_delete.php?post_id=<?php echo $post_id;?>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
