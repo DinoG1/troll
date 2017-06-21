@@ -35,7 +35,10 @@ if ($row['type'] == 0)
                         <form method="post" action="delete.php?id=<?php echo $row['id']; ?>" autocomplete="off">
                             <input type="submit" name="submit" value="Izbriši " />
                         </form>
-                       
+                        
+                        <form method="post" action="reset.php?id=<?php echo $row['id']; ?>" autocomplete="off">
+                            <input type="submit" name="submit" value="Reset Votes " />
+                        </form>
                         
                         
                         <hr />
@@ -66,6 +69,10 @@ if ($row['type'] == 0)
                         
                         <form method="post" action="delete.php?id=<?php echo $row['id']; ?>" autocomplete="off">
                             <input type="submit" name="submit" value="Izbriši " />
+                        </form>
+                        
+                         <form method="post" action="reset.php?id=<?php echo $row['id']; ?>" autocomplete="off">
+                            <input type="submit" name="submit" value="Reset Votes " />
                         </form>
                         
                         <hr />
