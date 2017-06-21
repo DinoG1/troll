@@ -6,7 +6,7 @@ $mysqli = NEW mysqli('localhost', 'root', '', 'troll1');
 $query = "SELECT p.*, u.username, u.email FROM posts p INNER JOIN users u ON p.user_id=u.id";
 $result = $mysqli->query($query);
 
-$id = "SELECT id FROM posts";   // POPRAVIT
+  // POPRAVIT
 
 while($row = mysqli_fetch_array($result))
     {
@@ -32,20 +32,12 @@ if ($row['type'] == 0)
                         <a href="post_vote.php?post_id=<?php echo $row['id']; ?>&vote=1">Upvote (<?php echo $row['upvote']; ?>)</a>
                         <a href="post_vote.php?post_id=<?php echo $row['id']; ?>&vote=0">Downvote (<?php echo $row['downvote']; ?>)</a>
                         
-                        <form method="post" autocomplete="off">
+                        <form method="post" action="delete.php?id=<?php echo $row['id']; ?>" autocomplete="off">
                             <input type="submit" name="submit" value="Izbriši " />
                         </form>
-                        <?php
-                        
                        
-                        if (isset($_POST['submit']))
-                        {
-                            {
-                                $query = "DELETE FROM posts WHERE id = ".$row['id'];".";     //izbriše message od vnešenega idja
-                                mysqli_query($mysqli, $query);
-                            }
-                        }
-                        ?>
+                        
+                        
                         <hr />
                     </div>
                 <?php
@@ -72,7 +64,9 @@ if ($row['type'] == 0)
                         <a href="post_vote.php?post_id=<?php echo $row['id']; ?>&vote=1">Upvote (<?php echo $row['upvote']; ?>)</a>
                         <a href="post_vote.php?post_id=<?php echo $row['id']; ?>&vote=0">Downvote (<?php echo $row['downvote']; ?>)</a>
                         
-                        
+                        <form method="post" action="delete.php?id=<?php echo $row['id']; ?>" autocomplete="off">
+                            <input type="submit" name="submit" value="Izbriši " />
+                        </form>
                         
                         <hr />
                     </div>
