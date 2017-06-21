@@ -88,7 +88,7 @@ include_once 'session.php';
                             <section>
                                 <header>
                                     <h2>Magna Phasellus</h2>
-                                </header>
+                              </header>
                                 <ul class="link-list">
                                     <li><a href="sendmessage.php">Send Message</a></li>
                                     <li><a href="readmessage.php">Read Message</a></li>

@@ -267,7 +267,7 @@ include_once 'database.php';
         <!--5 B - Week-->
         <div id="tab5" class="tab active">
             <?php
-            $query = "SELECT p.*, u.* FROM posts p INNER JOIN users u ON p.user_id=u.id WHERE WEEKOFYEAR(date_add) = WEEKOFYEAR(NOW()) AND year(date_add) = year(CURRENT_DATE) ORDER BY p.upvote DESC";
+            $query = "SELECT p.*, u.username, u.email FROM posts p INNER JOIN users u ON p.user_id=u.id WHERE WEEKOFYEAR(date_add) = WEEKOFYEAR(NOW()) AND year(date_add) = year(CURRENT_DATE) ORDER BY p.upvote DESC";
                         $result = mysqli_query($link, $query);
             while ($row = mysqli_fetch_array($result)) 
             {
@@ -281,7 +281,7 @@ include_once 'database.php';
                        $email = strtolower($email);     //vse v male lowercase
                        $email_hash = md5($email);       //hasha email
                     ?>
-                        <span class="trollUser"><img src="http://www.gravatar.com/avatar/<?php echo $email_hash?>?s=20"/></span>
+                        <span class="trollUser"><img src="http://www.gravatar.com/avatar/<?php echo $email_hash?>?s=20" /></span>
                         <span class="trollUser"><?php echo $row['username']; ?> |</span>
                         <span class="trollDate"><?php echo $row['date_add']; ?></span>
                         <br />
@@ -306,7 +306,7 @@ include_once 'database.php';
                        $email_hash = md5($email);       //hasha email
                     ?>
                         <span class="trollUser"><img src="http://www.gravatar.com/avatar/<?php echo $email_hash?>?s=20"/></span>
-                        <span class="trollUser"><?php echo $row['username']; ?> |</span>
+                        <span class="trollUser"><?php echo $row['username'];  ?> |</span>
                         <span class="trollDate"><?php echo $row['date_add']; ?></span>
                         <br />
                         <a href="post.php?id=b <?php echo $row['id']; ?>"
@@ -327,7 +327,7 @@ include_once 'database.php';
         <!--6 B - Month-->
         <div id="tab6" class="tab active">
             <?php
-            $query = "SELECT p.*, u.* FROM posts p INNER JOIN users u ON p.user_id=u.id WHERE month(date_add) = month(CURRENT_DATE) AND year(date_add) = year(CURRENT_DATE) ORDER BY p.upvote DESC";
+            $query = "SELECT p.*, u.username, u.email FROM posts p INNER JOIN users u ON p.user_id=u.id WHERE month(date_add) = month(CURRENT_DATE) AND year(date_add) = year(CURRENT_DATE) ORDER BY p.upvote DESC";
             $result = mysqli_query($link, $query);
             while ($row = mysqli_fetch_array($result)) 
             {
@@ -387,7 +387,7 @@ include_once 'database.php';
         <!--7 B - Year-->
         <div id="tab7" class="tab active">
             <?php
-            $query = "SELECT p.*, u.* FROM posts p INNER JOIN users u ON p.user_id=u.id WHERE year(date_add) = year(CURRENT_DATE) ORDER BY p.upvote DESC";
+            $query = "SELECT p.*, u.username, u.email FROM posts p INNER JOIN users u ON p.user_id=u.id WHERE year(date_add) = year(CURRENT_DATE) ORDER BY p.upvote DESC";
             $result = mysqli_query($link, $query);
             while ($row = mysqli_fetch_array($result)) 
             {
@@ -450,7 +450,7 @@ include_once 'database.php';
          <!--8 W - Week-->
         <div id="tab8" class="tab active">
             <?php
-            $query = "SELECT p.*, u.* FROM posts p INNER JOIN users u ON p.user_id=u.id WHERE WEEKOFYEAR(date_add) = WEEKOFYEAR(NOW()) AND year(date_add) = year(CURRENT_DATE) ORDER BY p.upvote DESC";
+            $query = "SELECT p.*, u.username, u.email FROM posts p INNER JOIN users u ON p.user_id=u.id WHERE WEEKOFYEAR(date_add) = WEEKOFYEAR(NOW()) AND year(date_add) = year(CURRENT_DATE) ORDER BY p.upvote DESC";
                         $result = mysqli_query($link, $query);
             while ($row = mysqli_fetch_array($result)) 
             {
@@ -510,7 +510,7 @@ include_once 'database.php';
         <!--9 W - Month-->
         <div id="tab9" class="tab active">
             <?php
-            $query = "SELECT p.*, u.* FROM posts p INNER JOIN users u ON p.user_id=u.id WHERE month(date_add) = month(CURRENT_DATE) AND year(date_add) = year(CURRENT_DATE) ORDER BY p.upvote DESC";
+            $query = "SELECT p.*, u.username, u.email FROM posts p INNER JOIN users u ON p.user_id=u.id WHERE month(date_add) = month(CURRENT_DATE) AND year(date_add) = year(CURRENT_DATE) ORDER BY p.upvote DESC";
             $result = mysqli_query($link, $query);
             while ($row = mysqli_fetch_array($result)) 
             {
@@ -570,7 +570,7 @@ include_once 'database.php';
         <!--10 W - Year-->
         <div id="tab10" class="tab active">
             <?php
-            $query = "SELECT p.*, u.* FROM posts p INNER JOIN users u ON p.user_id=u.id WHERE year(date_add) = year(CURRENT_DATE) ORDER BY p.upvote DESC";
+            $query = "SELECT p.*, u.username, u.email FROM posts p INNER JOIN users u ON p.user_id=u.id WHERE year(date_add) = year(CURRENT_DATE) ORDER BY p.upvote DESC";
             $result = mysqli_query($link, $query);
             while ($row = mysqli_fetch_array($result))
             {
@@ -626,13 +626,36 @@ include_once 'database.php';
             }
             ?>
         </div>
+      
+        
+        
+        
         
         
     </div>
 </div>
 
-
-
 <?php
+
+
+//v bazi pogleda uporabnika in ga primerja z SESSIONu z prijavljenim in nato izpiše vse kar je v while.
+$query = "SELECT * FROM users WHERE id = '".$_SESSION['user_id']."'";
+if($result = mysqli_query($link, $query))
+{
+    while($row = $result->fetch_assoc())
+    {
+            if($row['type'] == 1)     // preveri če je admin
+            {
+               ?>
+                <li class="linav"><a href="adminpannel.php">ADMIN PANEL</a></li>
+               <?php
+            }
+
+    }
+}
+
+
+
 include_once 'footer.php';
 ?>
+
